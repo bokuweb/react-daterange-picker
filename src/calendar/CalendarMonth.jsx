@@ -9,9 +9,9 @@ import CustomPropTypes from '../utils/CustomPropTypes';
 import isMomentRange from '../utils/isMomentRange';
 import PureRenderMixin from '../utils/PureRenderMixin';
 
-moment.lang('ja', {
+moment.locale('ja', {
     weekdaysShort: ['日', '月', '火', '水', '木', '金', '土'],
-    months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+    months: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
 });
 
 const lang = moment().localeData();
@@ -117,13 +117,13 @@ const CalendarMonth = React.createClass({
 
   renderHeaderYear() {
     let {firstOfMonth} = this.props;
-    let y = `${firstOfMonth.year()}年`;
+    let y = firstOfMonth.year();
     let years = Immutable.Range(y - 5, y).concat(Immutable.Range(y, y + 10));
     let choices = years.map(this.renderYearChoice);
     let modifiers = {year: true};
     return (
       <span className={this.cx({element: 'MonthHeaderLabel', modifiers})}>
-        {firstOfMonth.format('YYYY')}
+        {firstOfMonth.format('YYYY')}年
         {this.props.disableNavigation ? null : <select className={this.cx({element: 'MonthHeaderSelect'})} value={y} onChange={this.handleYearChange}>{choices.toJS()}</select>}
       </span>
     );
@@ -158,7 +158,7 @@ const CalendarMonth = React.createClass({
 
     return (
       <span className={this.cx({element: 'MonthHeaderLabel', modifiers})}>
-        {firstOfMonth.format('MMMM')}
+        {firstOfMonth.format('MMMM')}月
         {this.props.disableNavigation ? null : <select className={this.cx({element: 'MonthHeaderSelect'})} value={firstOfMonth.month()} onChange={this.handleMonthChange}>{choices.toJS()}</select>}
       </span>
     );

@@ -46,7 +46,7 @@ var _utilsPureRenderMixin2 = _interopRequireDefault(_utilsPureRenderMixin);
 
 _moment2['default'].lang('ja', {
   weekdaysShort: ['日', '月', '火', '水', '木', '金', '土'],
-  months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+  months: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
 });
 
 var lang = (0, _moment2['default'])().localeData();
@@ -175,7 +175,7 @@ var CalendarMonth = _react2['default'].createClass({
   renderHeaderYear: function renderHeaderYear() {
     var firstOfMonth = this.props.firstOfMonth;
 
-    var y = firstOfMonth.year() + '年';
+    var y = firstOfMonth.year();
     var years = _immutable2['default'].Range(y - 5, y).concat(_immutable2['default'].Range(y, y + 10));
     var choices = years.map(this.renderYearChoice);
     var modifiers = { year: true };
@@ -183,6 +183,7 @@ var CalendarMonth = _react2['default'].createClass({
       'span',
       { className: this.cx({ element: 'MonthHeaderLabel', modifiers: modifiers }) },
       firstOfMonth.format('YYYY'),
+      '年',
       this.props.disableNavigation ? null : _react2['default'].createElement(
         'select',
         { className: this.cx({ element: 'MonthHeaderSelect' }), value: y, onChange: this.handleYearChange },
@@ -228,6 +229,7 @@ var CalendarMonth = _react2['default'].createClass({
       'span',
       { className: this.cx({ element: 'MonthHeaderLabel', modifiers: modifiers }) },
       firstOfMonth.format('MMMM'),
+      '月',
       this.props.disableNavigation ? null : _react2['default'].createElement(
         'select',
         { className: this.cx({ element: 'MonthHeaderSelect' }), value: firstOfMonth.month(), onChange: this.handleMonthChange },

@@ -19,8 +19,6 @@ const lang = moment().localeData();
 const WEEKDAYS = Immutable.List(lang._weekdays).zip(Immutable.List(lang._weekdaysShort));
 const MONTHS = Immutable.List(lang._months);
 
-console.log(MONTHS);
-
 const CalendarMonth = React.createClass({
   mixins: [BemMixin, PureRenderMixin],
 
@@ -119,7 +117,7 @@ const CalendarMonth = React.createClass({
 
   renderHeaderYear() {
     let {firstOfMonth} = this.props;
-    let y = firstOfMonth.year();
+    let y = `${firstOfMonth.year()}年`;
     let years = Immutable.Range(y - 5, y).concat(Immutable.Range(y, y + 10));
     let choices = years.map(this.renderYearChoice);
     let modifiers = {year: true};
@@ -169,7 +167,7 @@ const CalendarMonth = React.createClass({
   renderHeader() {
     return (
       <div className={this.cx({element: 'MonthHeader'})}>
-         {this.renderHeaderYear()}年{this.renderHeaderMonth()}
+         {this.renderHeaderYear()}{this.renderHeaderMonth()}
       </div>
     );
   },

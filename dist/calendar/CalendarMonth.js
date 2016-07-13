@@ -54,8 +54,6 @@ var lang = (0, _moment2['default'])().localeData();
 var WEEKDAYS = _immutable2['default'].List(lang._weekdays).zip(_immutable2['default'].List(lang._weekdaysShort));
 var MONTHS = _immutable2['default'].List(lang._months);
 
-console.log(MONTHS);
-
 var CalendarMonth = _react2['default'].createClass({
   displayName: 'CalendarMonth',
 
@@ -177,7 +175,7 @@ var CalendarMonth = _react2['default'].createClass({
   renderHeaderYear: function renderHeaderYear() {
     var firstOfMonth = this.props.firstOfMonth;
 
-    var y = firstOfMonth.year();
+    var y = firstOfMonth.year() + '年';
     var years = _immutable2['default'].Range(y - 5, y).concat(_immutable2['default'].Range(y, y + 10));
     var choices = years.map(this.renderYearChoice);
     var modifiers = { year: true };
@@ -243,7 +241,6 @@ var CalendarMonth = _react2['default'].createClass({
       'div',
       { className: this.cx({ element: 'MonthHeader' }) },
       this.renderHeaderYear(),
-      '年',
       this.renderHeaderMonth()
     );
   },

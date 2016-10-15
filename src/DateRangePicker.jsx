@@ -46,6 +46,7 @@ const DateRangePicker = React.createClass({
     onHighlightRange: React.PropTypes.func, // triggered when a range is highlighted (hovered)
     onSelect: React.PropTypes.func, // triggered when a date or range is selectec
     onSelectStart: React.PropTypes.func, // triggered when the first date in a range is selected
+    setSelectedStartDate: React.PropTypes.func,
     paginationArrowComponent: React.PropTypes.func,
     selectedLabel: React.PropTypes.string,
     selectionType: React.PropTypes.oneOf(['single', 'range']),
@@ -95,6 +96,10 @@ const DateRangePicker = React.createClass({
       dateStates: this.state.dateStates && Immutable.is(this.state.dateStates, nextDateStates) ? this.state.dateStates : nextDateStates,
       enabledRange: this.state.enabledRange && this.state.enabledRange.isSame(nextEnabledRange) ? this.state.enabledRange : nextEnabledRange,
     });
+  },
+
+  setSelectedStartDate(date) {
+    this.setState({ selectedStartDate: date });
   },
 
   getInitialState() {
